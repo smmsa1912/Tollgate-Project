@@ -10,8 +10,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name = "User"
         verbose_name_plural = "Users"
 
-    RFID = models.CharField(max_length=50, blank=True, unique=True, null=True)
-    Car_Number = models.CharField(max_length=10, blank=True, unique=True, null=True)
     First_Name = models.CharField(max_length=50)
     Last_Name = models.CharField(max_length=50, blank=True)
     Email = models.EmailField("Email Address", unique=True)
@@ -43,3 +41,35 @@ class Exit_Point(models.Model):
         verbose_name_plural = "Exit Points"
 
     Exit_Point_ID = models.AutoField(primary_key=True)
+    Charges_Per_KM = models.FloatField()
+    Location = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return f"Exit Point {self.Exit_Point_ID} - {self.Location}"
+
+
+class Camera(models.Model):
+    class Meta:
+        verbose_name = "Camera"
+        verbose_name_plural = "Cameras"
+
+    Camera_ID = models.AutoField(primary_key=True)
+    Latitude = models.FloatField()
+    Longitude = models.FloatField()
+    Location = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"Camera {self.Camera_ID} - {self.Location}"
+
+
+class Vehicle(models.Model):
+    class Meta:
+        verbose_name = "Vehicle"
+        verbose_name_plural = "Vehicles"
+
+    RFID = models.CharField(max_length=50, unique=True)
+    Car_Number = models.CharField(max_length=20, unique=True)
+    Owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="vehicles")
+
+    def __str__(self):
+        return f"{self.Car_Number} - {self.Owner.Email}"

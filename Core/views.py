@@ -72,3 +72,11 @@ class RegisterView(View):
 def Logout(request):
     logout(request)
     return redirect("login")
+
+
+class BillingView(View):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def get(self, request):
+        return render(request, 'billing.html')
