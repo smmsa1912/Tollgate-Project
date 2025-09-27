@@ -30,6 +30,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         print(message)
 
         # Send message to room group
+        print("Event received in consumer:", data)
         await self.channel_layer.group_send(
             self.room_group_name,
             {
@@ -43,6 +44,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         message = event['message']
 
         # Send message to WebSocket
+        print("Event sent in consumer:", event)
         await self.send(text_data=json.dumps({
             'message': message
         }))

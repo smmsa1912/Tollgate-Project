@@ -75,7 +75,7 @@ TEMPLATES = [
 
 AUTH_USER_MODEL = "Core.User"
 ROOT_URLCONF = 'CoreApp.urls'
-WSGI_APPLICATION = 'CoreApp.wsgi.application'
+ASGI_APPLICATION = 'CoreApp.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -110,7 +110,6 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer",
     },
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

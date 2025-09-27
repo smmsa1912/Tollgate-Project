@@ -37,7 +37,7 @@ class ExitPointAdmin(admin.ModelAdmin):
     readonly_fields = ("Exit_Point_ID",)
     fieldsets = [
         ("Exit Point Information",
-         {"fields": ["Location", "Charges_Per_KM"]}),
+         {"fields": ["Location", "Charges_Per_KM", "Latitude", "Longitude"]}),
     ]
 
 

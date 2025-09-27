@@ -42,6 +42,8 @@ class Exit_Point(models.Model):
 
     Exit_Point_ID = models.AutoField(primary_key=True)
     Charges_Per_KM = models.FloatField()
+    Longitude = models.FloatField()
+    Latitude = models.FloatField()
     Location = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
