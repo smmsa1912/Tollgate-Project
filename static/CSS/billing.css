@@ -1,0 +1,71 @@
+body {
+    background: linear-gradient(135deg, #000 0%, #2575fc 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    color: #fff;
+    padding: 20px;
+}
+
+.dashboard-header h1 {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.dashboard-header p {
+    font-size: 1.1rem;
+}
+
+/* Master-detail layout */
+.list-container {
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 15px;
+    padding: 10px;
+    color: #fff0;
+    margin-bottom: 20px;
+}
+
+.list-item {
+    cursor: pointer;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+    transition: background 0.2s;
+    color: white;
+}
+
+.list-item:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.list-item.active {
+    background-color: rgba(0, 123, 255, 0.2);
+    font-weight: bold;
+}
+
+.detail-card {
+    background-color: rgba(255, 255, 255, 0);
+    color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+#payment-qr {
+    max-width: 300px;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+    #payment-qr {
+        max-width: 80%;
+    }
+}
