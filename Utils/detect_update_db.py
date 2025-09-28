@@ -17,7 +17,7 @@ from API.tasks import add_vehicle_entry
 
 # ========== CONFIGURATION ==========
 YOLO_MODEL_PATH = "best.pt"  # Path to your YOLO model
-VIDEO_SOURCE = "http://192.168.0.163:8080/video"  # Your video stream or file path
+VIDEO_SOURCE = "http://192.168.0.128:8080/video"  # Your video stream or file path
 # VIDEO_SOURCE = "../sample/sample5.mp4"
 
 CAMERA_ID = 1
