@@ -51,3 +51,4 @@ smartcard_web/*.rdb
 # But allow __init__.py to be tracked
 !**/migrations/__init__.py
 local_settings.py
+
