@@ -13,6 +13,8 @@ from API.tasks import add_vehicle_entry
 # ========== CONFIGURATION ==========
 YOLO_MODEL_PATH = "Utils/best.pt"  # Path to your YOLO model
 VIDEO_SOURCE = "http://192.168.0.128:8080/video"  # Your video stream or file path
+local_det_model_dir = "Utils/PP-OCRv5_server_det_infer"
+local_rec_model_dir = "Utils/PP-OCRv5_server_rec_infer"
 # VIDEO_SOURCE = "../sample/sample5.mp4"
 
 CAMERA_ID = 1
@@ -45,6 +47,8 @@ class OCRRecognizer:
         elif self.backend == "paddle":
             from paddleocr import PaddleOCR
             self.model = PaddleOCR(
+                det_model_dir=local_det_model_dir,
+                rec_model_dir=local_rec_model_dir,
                 use_textline_orientation=False,
                 use_doc_orientation_classify=False,
                 use_doc_unwarping=False,
@@ -135,19 +139,20 @@ class Command(BaseCommand):
                     plate_text = ocr.recognize(cropped_plate)
 
                     if plate_text:
-                        is_duplicate = False
-                        if USE_FUZZY_MATCHING:
-                            if any(is_similar(plate_text, p) for p in RECENTLY_DETECTED_PLATES):
-                                is_duplicate = True
-                        elif plate_text in RECENTLY_DETECTED_PLATES:
-                            is_duplicate = True
+                        # is_duplicate = False
+                        # if USE_FUZZY_MATCHING:
+                        #     if any(is_similar(plate_text, p) for p in RECENTLY_DETECTED_PLATES):
+                        #         is_duplicate = True
+                        # elif plate_text in RECENTLY_DETECTED_PLATES:
+                        #     is_duplicate = True
+                        #
+                        # if not is_duplicate:
 
-                        if not is_duplicate:
-                            self.stdout.write(self.style.SUCCESS(
-                                f"[INFO] New plate detected: {plate_text}. Sending to DB..."
-                            ))
-                            RECENTLY_DETECTED_PLATES.append(plate_text)
-                            add_vehicle_entry.delay(car_number=plate_text, camera_id=CAMERA_ID)
+                        self.stdout.write(self.style.SUCCESS(
+                            f"[INFO] New plate detected: {plate_text}. Sending to DB..."
+                        ))
+                        RECENTLY_DETECTED_PLATES.append(plate_text)
+                        add_vehicle_entry.delay(car_number=plate_text, camera_id=CAMERA_ID)
 
             if cv2.waitKey(1) & 0xFF == ord("q"):
                 break
