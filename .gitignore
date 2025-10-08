@@ -52,3 +52,10 @@ smartcard_web/*.rdb
 !**/migrations/__init__.py
 local_settings.py
 
+# Ignore PaddleOCR model directories
+PP-OCRv5_server_det_infer/
+PP-OCRv5_server_rec_infer/
+
+# Or ignore all .pdiparams files
+*.pdiparams
+*Zone.Identifier
